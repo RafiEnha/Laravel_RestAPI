@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 
 
-class CustomerController extends Controller
+class PelangganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,11 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::paginate(10);
+        $pelanggan = Pelanggan::paginate(10);
         return response()->json([
-            'data' => $customer
+            'data' => $pelanggan
         ]);
     }
-
-    
 
     /**
      * Store a newly created resource in storage.
@@ -31,49 +29,43 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = Customer::create([
-            'name' => $request->name,
-            'id_number' => $request->id_number,
-            'dob'=> $request ->dob,
-            'email'=> $request->email
+        $pelanggan = Pelanggan::create([
+            'nama' => $request->nama,
+            'email' => $request->email
         ]);
         return response()->json([
-            'data' => $customer
+            'data' => $pelanggan
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\Pelanggan  $Pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(Pelanggan $pelanggan)
     {
         return response()->json([
-            'data' => $customer
+            'data' => $pelanggan
         ]);
     }
-
-  
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\Pelanggan  $Pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, Pelanggan $pelanggan)
     {
-        $customer->name = $request->name;
-        $customer->id_number = $request->id_number;
-        $customer->dob = $request->dob;
-        $customer->email = $request->email;
-        $customer->save();
+        $pelanggan->nama = $request->nama;
+        $pelanggan->email = $request->email;
+        $pelanggan->save();
 
         return response()->json([
-            'data' => $customer
+            'data' => $pelanggan
         ]);
 
     }
@@ -81,14 +73,14 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\Pelanggan  $Pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Pelanggan $pelanggan)
     {
-        $customer->delete();
+        $pelanggan->delete();
         return response()->json([
-            'message' => 'customer deleted'
+            'message' => 'Pelanggan deleted'
         ], 204);    
     }
 }
